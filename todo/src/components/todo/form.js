@@ -1,19 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
 
-function TodoForm({addItem}) {
+function TodoForm(props) {
 
-  let [item, setItem] = useState({});
+  const [listItem, setItem] = useState(['listItem']);
 
   const handleInputChange = e => {
-    setItem({...item, [e.target.name]: e.target.value });
+    setItem({ item: {...listItem.item, [e.target.name]: e.target.value }});
   };
 
   const handleSubmit = (e) => {
+    console.log('submitted', e.target);
     e.preventDefault();
     e.target.reset();
-    addItem(item);
-    setItem({});
+    props.handleSubmit(listItem.item);
+    const item = {};
+    setItem({ item });
   };
 
     return (
