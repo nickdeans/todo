@@ -1,5 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+import './form.scss';
 
 function TodoForm(props) {
 
@@ -20,7 +24,8 @@ function TodoForm(props) {
 
     return (
       <>
-        <h3>Add Item</h3>
+      <Card bg="white" className="card">
+        <h3>Add To Do Item</h3>
         <form onSubmit={handleSubmit}>
           <label>
             <span>To Do Item</span>
@@ -31,15 +36,16 @@ function TodoForm(props) {
             />
           </label>
           <label>
-            <span>Difficulty Rating</span>
-            <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
-          </label>
-          <label>
             <span>Assigned To</span>
             <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
           </label>
-          <button>Add Item</button>
+          <label>
+            <span>Difficulty Rating</span>
+            <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
+          </label>
+          <Button type="submit" className="add-button">Add Item</Button>
         </form>
+      </Card>
       </>
     );
 }
