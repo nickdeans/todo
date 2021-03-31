@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ToDo from './components/todo/todo.js';
+import ToDo from './components/todo/todo-connected.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

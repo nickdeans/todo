@@ -56,7 +56,7 @@ function ToDo() {
         <NavBar bg="dark" variant="light" className="nav-two">
           <Nav>
             <h2>
-              To Do List Manger ({list.filter(item => !item.complete).length})
+              To Do List Manager ({list.filter(item => !item.complete).length})
             </h2>
           </Nav>
         </NavBar>
