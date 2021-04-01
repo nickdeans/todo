@@ -3,6 +3,10 @@ import TodoForm from './form.js';
 import TodoList from './list.js';
 import NavBar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import useAjax from '../../hooks/use-Ajax.js'
+import SettingsProvider from '../../context/settings.js'
+// import useForm from '../../hooks/use-form.js';
+import axios from 'axios';
 
 import './todo.scss';
 
@@ -12,6 +16,12 @@ const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 const ToDo = () => {
 
   const [list, setList] = useState([]);
+  const [request, response] = useAjax();
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    setData(response);
+  }, [response]);
 
   const _addItem = (item) => {
     item.due = new Date();

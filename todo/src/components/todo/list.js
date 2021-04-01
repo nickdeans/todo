@@ -1,25 +1,27 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
+import './list.scss';
+
 function TodoList(props) {
 
     return (
-      <Card>
         <ul>
-          <Card.Body>
           {props.list.map(item => (
-            <li
-              className={`complete-${item.complete.toString()}`}
-              key={item._id}
-            >
-              <span onClick={() => props.handleComplete(item._id)}>
-                {item.text}
-              </span>
-            </li>
+          <Card id="list" bg="light" className={`complete-${item.complete.toString()}`} onClick={() => props.handleComplete(item._id)}
+          key={item._id}>
+            <Card.Header>{item.assignee}</Card.Header>
+            <Card.Body>
+              <blockquote className="blockquote mb-0">
+                <p>
+                  {item.text}
+                </p>
+                <footer className="blockquote-footer">Difficulty: {item.difficulty}</footer>
+              </blockquote>
+            </Card.Body>
+          </Card>
           ))}
-          </Card.Body>
         </ul>
-      </Card>
     );
 }
 
