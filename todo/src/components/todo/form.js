@@ -24,7 +24,7 @@ function TodoForm(props) {
 
     return (
       <>
-      <Card bg="white" className="card">
+      <Card bg="light" className="card">
         <h3>Add To Do Item</h3>
         <form onSubmit={handleSubmit}>
           <label>
