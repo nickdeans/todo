@@ -6,3 +6,23 @@
 .blockquote-footer {
     text-align: right;
 }
+
+.exit-buttons {
+    display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+    background-color: blue;
+}
+
+.exit-button {
+    display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+    background-color: blue;
+}
+
+.mr-auto {
+    padding: 10px;
+}
