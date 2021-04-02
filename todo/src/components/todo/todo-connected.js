@@ -5,6 +5,10 @@ import NavBar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import useAjax from '../../hooks/use-Ajax.js'
 import SettingsProvider from '../../context/settings.js'
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 // import useForm from '../../hooks/use-form.js';
 import axios from 'axios';
 
@@ -64,6 +68,27 @@ const ToDo = () => {
     }
   };
 
+  const _deleteItem = id => {
+    const url = `${todoAPI}/${id}`;
+    const options = {
+      url: url,
+      method: 'delete',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    request(options);
+  };
+
+  const _axiosGetItems = async item => {
+    const request = await axios({
+      method: 'get',
+      url: todoAPI,
+    });
+
+    const results = request.data.results;
+    setList(results);
+  };
+
   const _getTodoItems = () => {
     fetch(todoAPI, {
       method: 'get',
@@ -74,15 +99,32 @@ const ToDo = () => {
       .catch(console.error);
   };
 
-  useEffect(_getTodoItems, []);
+  useEffect(_axiosGetItems, [_toggleComplete, _deleteItem]);
+  // useEffect(_getTodoItems, []);
 
   return (
     <>
       <header>
-      <NavBar bg="primary" variant="dark">
+        <NavBar bg="primary" variant="dark">
           <Nav>
-            <Nav.Link href="">Home</Nav.Link>
+            <Nav.Link href="" className="nav-bar">Home</Nav.Link>
           </Nav>
+          <Form>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </InputGroup>
+          </Form>
+          <Form inline >
+            <FormControl type="text" placeholder="Password" className="mr-sm-2" />
+            <Button variant="dark" type="submit">Login</Button>
+          </Form>
         </NavBar>
         <NavBar bg="dark" variant="light" className="nav-two">
           <Nav>
@@ -102,7 +144,7 @@ const ToDo = () => {
         <div>
           <TodoList
             list={list}
-            handleComplete={_toggleComplete}
+            handleComplete={_toggleComplete} handleDelete={_deleteItem}
           />
         </div>
       </section>
